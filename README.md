@@ -1,6 +1,6 @@
-# OxiKernel
+# PurifyKernel
 
-OxiKernel is an AOSP-only Android kernel built exclusively for the **Samsung Galaxy A50** (SM-A505x). It targets AOSP, GSI, and LineageOS-based systems,
+PurifyKernel is an AOSP-only Android kernel built exclusively for the **Samsung Galaxy A50** (SM-A505x). It targets AOSP, GSI, and LineageOS-based systems,
 > [!WARNING]
 > Flashing a custom kernel can cause bootloops, data loss, or permanent security feature disablement. Back up your data before proceeding. You are solely responsible for any issues that may arise.
 
@@ -14,7 +14,7 @@ OxiKernel is an AOSP-only Android kernel built exclusively for the **Samsung Gal
 | Supported Android version | Android 11 - Android 16 |
 | ROM types | AOSP-based ROMs only |
 | Architectures | ARM64 kernel, ARM32 compatibility layer |
-| Compiler | Proton Clang 13 (denizomer1/proton-clang) |
+| Compiler | Proton Clang 13 |
 | License | Kernel: GPL-2.0, build script: GPL-3.0 |
 
 ### Key features
@@ -50,7 +50,7 @@ The device-tree section includes only A50 SWA hardware revisions (`00`, `01`, `0
 2. Copy the package to your phone's internal storage or SD card.
 3. Reboot into recovery mode.
 4. Back up the existing `boot` partition if possible.
-5. Flash the OxiKernel ZIP.
+5. Flash the PurifyKernel ZIP.
 6. Reboot directly into the system instead of recovery.
 
 The first boot may take longer than usual. If the device does not boot, return to recovery and restore your backed-up `boot` image or the ROM's original kernel.
@@ -93,13 +93,13 @@ sudo pacman -S --needed \
 ### 2. Clone the repository
 
 ```bash
-git clone https://github.com/denizomer1/oxikernel.git
-cd oxikernel
+git clone https://github.com/denizomer1/purifykernel.git
+cd purifykernel
 ```
 
 ### 3. Start the build
 
-`build.sh` automatically downloads the required Proton Clang toolchain from `denizomer1/proton-clang` into `toolchain/` on the first run, merges configurations, and produces the package.
+`build.sh` automatically downloads the required Proton Clang toolchain into `toolchain/` on the first run, merges configurations, and produces the package.
 
 For SELinux enforcing build:
 
@@ -120,13 +120,13 @@ For SELinux permissive build:
 --permissive    Produces kernel with SELinux permissive (not recommended).
 ```
 
-OxiKernel is pinned to Android 16 GSI. There are no options for other Android versions, devices, ROM variants, or incremental builds. The script always performs a clean build.
+PurifyKernel is pinned to Android 16 GSI. There are no options for other Android versions, devices, ROM variants, or incremental builds. The script always performs a clean build.
 
 ### Build outputs
 
 The build artifacts are written to the `out/` directory:
 
-- `OxiKernel-*.zip`: Minimal package flashable via Galaxy A50 recovery
+- `PurifyKernel-*.zip`: Minimal package flashable via Galaxy A50 recovery
 - `boot.img`: Direct boot image for Galaxy A50
 
 The ZIP contains `boot.img`, `dtb.img`, `dtbo.img`, and a minimal recovery installer specific to the Galaxy A50. It does not include AnyKernel, BusyBox, Magisk, KernelSU, or any root helper tool. The installer checks the device ID only and writes the images to the corresponding partitions.
@@ -172,4 +172,4 @@ When reporting a bug, include the following:
 - Steps to reproduce the issue
 - Relevant `logcat`, `dmesg`, and `kmsg` logs
 
-Bugs can be reported at [GitHub Issues](https://github.com/denizomer1/oxikernel/issues).
+Bugs can be reported at [GitHub Issues](https://github.com/denizomer1/PurifyKernel/issues).
