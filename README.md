@@ -93,13 +93,11 @@ sudo pacman -S --needed \
 ### 2. Clone the repository
 
 ```bash
-git clone https://github.com/denizomer1/purifykernel.git
-cd purifykernel
+git clone https://github.com/denizomer10/PurifyKernel.git
+cd Purifykernel
 ```
 
 ### 3. Start the build
-
-`build.sh` automatically downloads the required Proton Clang toolchain into `toolchain/` on the first run, merges configurations, and produces the package.
 
 For SELinux enforcing build:
 
@@ -139,27 +137,9 @@ This tree can be used as a standard ARM64 kernel source inside the A50 device tr
 
 - `arch/arm64/configs/exynos9610-a50_core_defconfig`
 - `arch/arm64/configs/exynos9610-a50_default_defconfig`
-- `kernel/configs/oxikernel_*12.config`
+- `kernel/configs/PurifyKernel_*12.config`
 
 If the ROM build system packages the kernel itself, it must use the same config merge order as in `build.sh`. `build.sh` serves as a standalone reference application for testing and recovery ZIP production.
-
-## Troubleshooting
-
-### Toolchain cannot be downloaded
-
-`git` must be installed and GitLab must be accessible. If there is a partial download, remove the `toolchain/` directory and rerun the build.
-
-### `libncurses.so.5` not found
-
-Proton Clang 13 targets an older userspace ABI, so this error may appear on some newer distributions. First use your distribution's compatibility package. If the package is not available, build inside an Ubuntu 22.04-based container or virtual machine; do not create manual symlinks in system library paths.
-
-### `Image not built successfully` error after build
-
-This message summarizes the actual error. Inspect the first `error:` line that appears before it in the terminal output.
-
-### Device does not boot
-
-Verify that the package matches your device, ROM type, and Android version. Then restore the previous `boot` backup or the ROM's original boot image from recovery.
 
 ## Bug report
 
@@ -172,4 +152,4 @@ When reporting a bug, include the following:
 - Steps to reproduce the issue
 - Relevant `logcat`, `dmesg`, and `kmsg` logs
 
-Bugs can be reported at [GitHub Issues](https://github.com/denizomer1/PurifyKernel/issues).
+Bugs can be reported at [GitHub Issues](https://github.com/denizomer10/PurifyKernel/issues).
